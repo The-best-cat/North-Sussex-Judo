@@ -11,9 +11,9 @@ namespace NorthSussexJudo
     //Doesn't store the weights as they should be updated in real time.
     public struct Outcome 
     {
-        public TrainingPlan Plan { get; private set; }
-        public (int, decimal) Competitions { get; private set; } //number of competitions, cost
-        public (int, decimal) CoachingHours { get; private set; } //number of hours, cost
+        public TrainingPlan Plan { get; private set; } //weekly cost
+        public (int, decimal) Competitions { get; private set; } //(number of competitions, cost), monthly cost
+        public (int, decimal) CoachingHours { get; private set; } //(number of hours, cost), weekly cost
 
         public Outcome(TrainingPlan plan, int competitions, int coachingHours)
         {

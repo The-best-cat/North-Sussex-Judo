@@ -2,9 +2,6 @@
 {
     public class Athlete
     {
-        public const int MAX_COACHING_HOURS_PER_WEEK = 5;
-        public const int MAX_COACHING_HOURS_PER_MONTH = MAX_COACHING_HOURS_PER_WEEK * 4; 
-
         public string Name { get; private set; }
         public TrainingPlan Plan { get; private set; }
         public float Weight { get; private set; }

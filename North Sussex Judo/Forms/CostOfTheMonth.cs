@@ -66,16 +66,16 @@ namespace NorthSussexJudo
 
             if (outcome.CoachingHours.Item1 > 0)
             {
-                finalCost += outcome.CoachingHours.Item2;
+                finalCost += outcome.CoachingHours.Item2 * 4;
 
                 Label coaching = new Label();
-                coaching.Text = $"Private Coaching {outcome.CoachingHours.Item1}hr";
+                coaching.Text = $"Private Coaching {outcome.CoachingHours.Item1 * 4}hr";
                 coaching.Location = new Point(leftX, currentY);
                 coaching.Size = new Size(200, costSize.Height);                
                 Controls.Add(coaching);
 
                 Label coachingCost = new Label();
-                coachingCost.Text = "£" + outcome.CoachingHours.Item2.ToString("0.00");
+                coachingCost.Text = "£" + (outcome.CoachingHours.Item2 * 4).ToString("0.00");
                 coachingCost.Location = new Point(rightX, currentY);
                 coachingCost.Size = costSize;
                 coachingCost.TextAlign = ContentAlignment.TopRight;

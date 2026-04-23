@@ -47,10 +47,10 @@
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.Location = new System.Drawing.Point(42, 80);
+            this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label1.Location = new System.Drawing.Point(42, 78);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(48, 16);
+            this.label1.Size = new System.Drawing.Size(52, 18);
             this.label1.TabIndex = 0;
             this.label1.Text = "Name";
             // 
@@ -75,7 +75,7 @@
             // NameDisplay
             // 
             this.NameDisplay.AutoSize = true;
-            this.NameDisplay.Location = new System.Drawing.Point(42, 96);
+            this.NameDisplay.Location = new System.Drawing.Point(42, 100);
             this.NameDisplay.Name = "NameDisplay";
             this.NameDisplay.Size = new System.Drawing.Size(73, 16);
             this.NameDisplay.TabIndex = 3;
@@ -84,27 +84,27 @@
             // label4
             // 
             this.label4.AutoSize = true;
-            this.label4.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label4.Location = new System.Drawing.Point(42, 232);
+            this.label4.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label4.Location = new System.Drawing.Point(42, 230);
             this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(91, 16);
+            this.label4.Size = new System.Drawing.Size(105, 18);
             this.label4.TabIndex = 4;
             this.label4.Text = "List of Costs";
             // 
             // label5
             // 
             this.label5.AutoSize = true;
-            this.label5.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label5.Location = new System.Drawing.Point(42, 129);
+            this.label5.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label5.Location = new System.Drawing.Point(42, 127);
             this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(118, 16);
+            this.label5.Size = new System.Drawing.Size(127, 18);
             this.label5.TabIndex = 5;
             this.label5.Text = "Weight Analysis";
             // 
             // label6
             // 
             this.label6.AutoSize = true;
-            this.label6.Location = new System.Drawing.Point(42, 145);
+            this.label6.Location = new System.Drawing.Point(42, 149);
             this.label6.Name = "label6";
             this.label6.Size = new System.Drawing.Size(55, 16);
             this.label6.TabIndex = 6;
@@ -113,7 +113,7 @@
             // WeightDisplay
             // 
             this.WeightDisplay.AutoSize = true;
-            this.WeightDisplay.Location = new System.Drawing.Point(103, 145);
+            this.WeightDisplay.Location = new System.Drawing.Point(103, 149);
             this.WeightDisplay.Name = "WeightDisplay";
             this.WeightDisplay.Size = new System.Drawing.Size(33, 16);
             this.WeightDisplay.TabIndex = 7;
@@ -122,7 +122,7 @@
             // label8
             // 
             this.label8.AutoSize = true;
-            this.label8.Location = new System.Drawing.Point(42, 161);
+            this.label8.Location = new System.Drawing.Point(42, 165);
             this.label8.Name = "label8";
             this.label8.Size = new System.Drawing.Size(68, 16);
             this.label8.TabIndex = 8;
@@ -131,7 +131,7 @@
             // CategoryDisplay
             // 
             this.CategoryDisplay.AutoSize = true;
-            this.CategoryDisplay.Location = new System.Drawing.Point(103, 161);
+            this.CategoryDisplay.Location = new System.Drawing.Point(103, 165);
             this.CategoryDisplay.Name = "CategoryDisplay";
             this.CategoryDisplay.Size = new System.Drawing.Size(15, 16);
             this.CategoryDisplay.TabIndex = 9;
@@ -141,7 +141,7 @@
             // 
             this.AnalysisDisplay.AutoEllipsis = true;
             this.AnalysisDisplay.AutoSize = true;
-            this.AnalysisDisplay.Location = new System.Drawing.Point(42, 187);
+            this.AnalysisDisplay.Location = new System.Drawing.Point(42, 191);
             this.AnalysisDisplay.MaximumSize = new System.Drawing.Size(364, 0);
             this.AnalysisDisplay.Name = "AnalysisDisplay";
             this.AnalysisDisplay.Size = new System.Drawing.Size(283, 16);
@@ -151,7 +151,7 @@
             // Close
             // 
             this.Close.Anchor = System.Windows.Forms.AnchorStyles.Bottom;
-            this.Close.Location = new System.Drawing.Point(172, 390);
+            this.Close.Location = new System.Drawing.Point(173, 373);
             this.Close.Name = "Close";
             this.Close.Size = new System.Drawing.Size(75, 32);
             this.Close.TabIndex = 11;
@@ -162,7 +162,7 @@
             // PlanDisplay
             // 
             this.PlanDisplay.AutoSize = true;
-            this.PlanDisplay.Location = new System.Drawing.Point(42, 248);
+            this.PlanDisplay.Location = new System.Drawing.Point(42, 252);
             this.PlanDisplay.Name = "PlanDisplay";
             this.PlanDisplay.Size = new System.Drawing.Size(34, 16);
             this.PlanDisplay.TabIndex = 12;
@@ -171,7 +171,7 @@
             // PlanCostDisplay
             // 
             this.PlanCostDisplay.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.PlanCostDisplay.Location = new System.Drawing.Point(266, 248);
+            this.PlanCostDisplay.Location = new System.Drawing.Point(268, 252);
             this.PlanCostDisplay.Name = "PlanCostDisplay";
             this.PlanCostDisplay.RightToLeft = System.Windows.Forms.RightToLeft.No;
             this.PlanCostDisplay.Size = new System.Drawing.Size(100, 16);
@@ -183,7 +183,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(120F, 120F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Dpi;
-            this.ClientSize = new System.Drawing.Size(410, 450);
+            this.ClientSize = new System.Drawing.Size(412, 433);
             this.Controls.Add(this.PlanCostDisplay);
             this.Controls.Add(this.PlanDisplay);
             this.Controls.Add(this.Close);
@@ -198,8 +198,8 @@
             this.Controls.Add(this.label3);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.label1);
-            this.MaximumSize = new System.Drawing.Size(428, 497);
-            this.MinimumSize = new System.Drawing.Size(428, 497);
+            this.MaximumSize = new System.Drawing.Size(430, 480);
+            this.MinimumSize = new System.Drawing.Size(430, 480);
             this.Name = "CostOfTheMonth";
             this.Text = "Cost Of The Month";
             this.Load += new System.EventHandler(this.CostOfTheMonth_Load);
