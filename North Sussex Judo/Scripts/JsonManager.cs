@@ -8,6 +8,7 @@ namespace NorthSussexJudo
 {
     internal static class JsonManager
     {
+        public const string FOLDER_NAME = "North Sussex Judo";
         public const string FILE_NAME = "athletes.json";
 
         public static void Save()
@@ -53,9 +54,19 @@ namespace NorthSussexJudo
             }
         }
 
+        private static string GetDirectory()
+        {
+            string directory = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData), FOLDER_NAME);
+            if (!Directory.Exists(directory))
+            {
+                Directory.CreateDirectory(directory);
+            }
+            return directory;
+        }
+
         private static string GetPath()
         {
-            return Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData), FILE_NAME);
+            return Path.Combine(GetDirectory(), FILE_NAME);
         }
     }
 }

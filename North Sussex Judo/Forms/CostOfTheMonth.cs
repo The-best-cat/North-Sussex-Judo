@@ -17,7 +17,7 @@ namespace NorthSussexJudo
         private const int EXTRA_X_GAP = 16;
         private const int EXTRA_Y_GAP = 5;
 
-        private Athlete athlete;
+        private readonly Athlete athlete;
 
         public CostOfTheMonth(Athlete athlete)
         {
@@ -82,22 +82,26 @@ namespace NorthSussexJudo
 
         private void ItemLabel(string text, int x, int y, int h)
         {
-            Label label = new Label();
-            label.Text = text;
-            label.Location = new Point(x, y);
-            label.Size = new Size(200, h);
-            label.BackColor = Color.Transparent;
+            Label label = new Label
+            {
+                Text = text,
+                Location = new Point(x, y),
+                Size = new Size(200, h),
+                BackColor = Color.Transparent
+            };
             Controls.Add(label);
         }
 
         private void CostLabel(string text, int x, int y, int w, int h)
         {
-            Label label = new Label();
-            label.Text = text;
-            label.Location = new Point(x, y);
-            label.Size = new Size(w, h);
-            label.TextAlign = ContentAlignment.TopRight;
-            label.BackColor = Color.Transparent;
+            Label label = new Label
+            {
+                Text = text,
+                Location = new Point(x, y),
+                Size = new Size(w, h),
+                TextAlign = ContentAlignment.TopRight,
+                BackColor = Color.Transparent
+            };
             Controls.Add(label);
         }
     }

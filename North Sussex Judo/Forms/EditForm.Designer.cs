@@ -178,6 +178,7 @@
             this.WeightCatList.Name = "WeightCatList";
             this.WeightCatList.Size = new System.Drawing.Size(151, 24);
             this.WeightCatList.TabIndex = 26;
+            this.WeightCatList.SelectedIndexChanged += new System.EventHandler(this.WeightCatList_SelectedIndexChanged);
             // 
             // WeightCatLabel
             // 
@@ -218,6 +219,7 @@
             this.TrainingPlanList.Name = "TrainingPlanList";
             this.TrainingPlanList.Size = new System.Drawing.Size(151, 24);
             this.TrainingPlanList.TabIndex = 22;
+            this.TrainingPlanList.SelectedIndexChanged += new System.EventHandler(this.TrainingPlanList_SelectedIndexChanged);
             // 
             // PlanLabel
             // 

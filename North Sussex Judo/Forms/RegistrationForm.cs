@@ -7,8 +7,7 @@ namespace NorthSussexJudo
 {
     public partial class RegistrationForm : Form
     {
-        public event EventHandler<Athlete> onRegistered;
-        public event EventHandler<Athlete> onEdited;
+        public event EventHandler<Athlete> onRegistered;        
 
         public RegistrationForm()
         {
@@ -77,38 +76,29 @@ namespace NorthSussexJudo
 
         private void TrainingPlanList_SelectedIndexChanged(object sender, EventArgs e)
         {
-            CompetitionBox.Enabled = TrainingPlans.GetPlan(TrainingPlanList.Text).AllowCompetition;
+            if (Validation.ValidateDropdown(TrainingPlanList, PlanError))
+            {
+                CompetitionBox.Enabled = TrainingPlans.GetPlan(TrainingPlanList.Text).AllowCompetition;
+            }
+        }
+
+        private void WeightCatList_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            Validation.ValidateDropdown(WeightCatList, CatError);
         }
 
         private bool CheckAllowRegister()
         {
-            bool valid = true;
-
-            if (string.IsNullOrEmpty(NameBox.Text))
-            {
-                valid = false;
-                NameError.SetError(NameBox, "Pleaase enter the athlete's name.");
-            }
-
-            valid = valid && Validation.IsNameValid(NameBox);
-
-            if (TrainingPlanList.SelectedIndex == -1)
-            {
-                valid = false;
-                PlanError.SetError(TrainingPlanList, "Please select a training plan.");
-            }
-
-            valid = valid && Validation.ValidateFloatInput(WeightBox);
-
-            if (WeightCatList.SelectedIndex == -1)
-            {
-                valid = false;
-                CatError.SetError(WeightCatList, "Please select a weight category.");
-            }
-
-            valid = valid && Validation.ValidateIntInput(CompetitionBox);
-
-            return valid;
+            return Validation.CheckAllowRegister(
+                NameBox,
+                WeightBox,
+                CompetitionBox,
+                TrainingPlanList,
+                WeightCatList,
+                NameError,
+                PlanError,
+                CatError
+            );
         }
     }
 }

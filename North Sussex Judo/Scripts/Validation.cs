@@ -53,6 +53,17 @@ namespace NorthSussexJudo
             }
         }
 
+        public static bool ValidateDropdown(ComboBox box, ErrorProvider error, string message = "")
+        {
+            if (box.SelectedIndex == -1)
+            {                
+                error.SetError(box, message);
+                return false;
+            }
+            error.SetError(box, string.Empty);
+            return true;
+        }
+
         private static void TrimName(TextBox textBox)
         {
             StringBuilder sb = new StringBuilder();
@@ -139,6 +150,31 @@ namespace NorthSussexJudo
             {
                 provider.SetError(textBox, string.Empty);
             }
+        }
+
+        public static bool CheckAllowRegister(TextBox name, TextBox weight, TextBox competition, ComboBox trainingPlanList,
+            ComboBox weightCatList, ErrorProvider nameError, ErrorProvider planError, ErrorProvider catError
+        )
+        {
+            bool valid = true;
+
+            if (string.IsNullOrEmpty(name.Text))
+            {
+                valid = false;
+                nameError.SetError(name, "Pleaase enter the athlete's name.");
+            } 
+            else
+            {
+                nameError.SetError(name, string.Empty);
+            }
+
+            valid = valid && IsNameValid(name);
+            valid = valid && ValidateDropdown(trainingPlanList, planError, "Please select a training plan.");
+            valid = valid && ValidateFloatInput(weight);
+            valid = valid && ValidateDropdown(weightCatList, catError, "Please select a weight category.");
+            valid = valid && ValidateIntInput(competition);
+
+            return valid;
         }
     }
 }

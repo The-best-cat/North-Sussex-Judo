@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Drawing;
 using System.Windows.Forms;
 
@@ -6,7 +7,9 @@ namespace NorthSussexJudo
 {
     public partial class MainMenu : Form
     {
+        private int page = 0;
         private Mode mode = Mode.NONE;
+        private List<Guid> athletes = new List<Guid>();
 
         public MainMenu()
         {
@@ -21,6 +24,7 @@ namespace NorthSussexJudo
                 AddAthlete(i);
             }
             EnableButtons();
+            OnModeChanged();
         }
 
         private void Register_Click(object sender, EventArgs e)
@@ -75,14 +79,67 @@ namespace NorthSussexJudo
             }
         }
 
+        private void NextPage_Click(object sender, EventArgs e)
+        {
+            page++;
+            ChangePage();            
+        }
+
+        private void LastPage_Click(object sender, EventArgs e)
+        {
+            page--;
+            ChangePage();            
+        }
+
+        private bool AtFirstPage()
+        {
+            return page == 0;
+        }
+
+        private bool AtLastPage()
+        {
+            return page == athletes.Count / 25;
+        }   
+
+        private bool HasMultiplePages()
+        {
+            return athletes.Count > 25;
+        }
+
+        private void ChangePage()
+        {
+            FlowPanel.Controls.Clear();
+            for (int i = page * 25; i < Math.Min(page * 25 + 25, athletes.Count); i++)
+            {
+                FlowPanel.Controls.Add(CreateButton(AthleteStorage.Get(athletes[i])));
+            }
+            OnModeChanged();
+        }
+
+        private Button CreateButton(Athlete athlete)
+        {
+            Button btn = new Button
+            {
+                Text = athlete.Name,
+                Size = new Size(143, 61),
+                Tag = athlete.Guid
+            };
+            btn.Click += AthleteButton_Click;
+            return btn;
+        }
+
         private void AddAthlete(Athlete athlete)
         {
-            Button btn = new Button();
-            btn.Text = athlete.Name;
-            btn.Size = new Size(143, 61);
-            btn.Tag = athlete.Guid;
-            btn.Click += AthleteButton_Click;
-            FlowPanel.Controls.Add(btn);
+            if (athletes.Count < page * 25 + 25)
+            {
+                FlowPanel.Controls.Add(CreateButton(athlete));
+            } 
+            else if (AtFirstPage())
+            {
+                NextPage.Enabled = true;
+            }
+
+            athletes.Add(athlete.Guid);
             EnableButtons();
         }
 
@@ -98,7 +155,20 @@ namespace NorthSussexJudo
                     break;
                 }
             }
+            athletes.Remove(guid);
+
+            if (!AtLastPage())
+            {
+                FlowPanel.Controls.Add(CreateButton(AthleteStorage.Get(athletes[page * 25 + 24])));
+            }
+
             EnableButtons();
+
+            if (FlowPanel.Controls.Count == 0 && !AtFirstPage())
+            {
+                page--;
+                ChangePage();
+            }
         }
 
         private void EditAthlete(Athlete athlete)
@@ -115,8 +185,8 @@ namespace NorthSussexJudo
 
         private void EnableButtons()
         {
-            Remove.Enabled = !AthleteStorage.IsEmpty();
-            Edit.Enabled = !AthleteStorage.IsEmpty();
+            Remove.Enabled = mode == Mode.NONE || !AthleteStorage.IsEmpty() && IsDeleting();
+            Edit.Enabled = mode == Mode.NONE || !AthleteStorage.IsEmpty() && IsEditing();
 
             if ((IsDeleting() && !Remove.Enabled) || (IsEditing() && !Edit.Enabled))
             {
@@ -134,6 +204,8 @@ namespace NorthSussexJudo
 
         private void OnModeChanged()
         {
+            NextPage.Enabled = mode == Mode.NONE && HasMultiplePages() && !AtLastPage();
+            LastPage.Enabled = mode == Mode.NONE && HasMultiplePages() && !AtFirstPage();
             Register.Enabled = mode == Mode.NONE;
             Edit.Enabled = (mode == Mode.NONE || IsEditing()) && !AthleteStorage.IsEmpty();
             Remove.Enabled = (mode == Mode.NONE || IsDeleting()) && !AthleteStorage.IsEmpty();

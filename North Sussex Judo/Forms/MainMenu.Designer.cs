@@ -35,6 +35,8 @@
             this.RemoveTipLabel = new System.Windows.Forms.Label();
             this.Edit = new System.Windows.Forms.Button();
             this.EditTipLabel = new System.Windows.Forms.Label();
+            this.NextPage = new System.Windows.Forms.Button();
+            this.LastPage = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // Register
@@ -63,7 +65,7 @@
             // 
             this.FlowPanel.Location = new System.Drawing.Point(28, 64);
             this.FlowPanel.Name = "FlowPanel";
-            this.FlowPanel.Size = new System.Drawing.Size(747, 370);
+            this.FlowPanel.Size = new System.Drawing.Size(747, 338);
             this.FlowPanel.TabIndex = 3;
             // 
             // Remove
@@ -114,11 +116,33 @@
             this.EditTipLabel.Text = "Click on any athlete to edit it. Click again to exit Edit Mode";
             this.EditTipLabel.Visible = false;
             // 
+            // NextPage
+            // 
+            this.NextPage.Location = new System.Drawing.Point(713, 415);
+            this.NextPage.Name = "NextPage";
+            this.NextPage.Size = new System.Drawing.Size(75, 23);
+            this.NextPage.TabIndex = 8;
+            this.NextPage.Text = "Next";
+            this.NextPage.UseVisualStyleBackColor = true;
+            this.NextPage.Click += new System.EventHandler(this.NextPage_Click);
+            // 
+            // LastPage
+            // 
+            this.LastPage.Location = new System.Drawing.Point(12, 415);
+            this.LastPage.Name = "LastPage";
+            this.LastPage.Size = new System.Drawing.Size(75, 23);
+            this.LastPage.TabIndex = 9;
+            this.LastPage.Text = "Previous";
+            this.LastPage.UseVisualStyleBackColor = true;
+            this.LastPage.Click += new System.EventHandler(this.LastPage_Click);
+            // 
             // MainMenu
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(120F, 120F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Dpi;
             this.ClientSize = new System.Drawing.Size(800, 450);
+            this.Controls.Add(this.LastPage);
+            this.Controls.Add(this.NextPage);
             this.Controls.Add(this.EditTipLabel);
             this.Controls.Add(this.Edit);
             this.Controls.Add(this.RemoveTipLabel);
@@ -145,6 +169,8 @@
         private System.Windows.Forms.Label RemoveTipLabel;
         private System.Windows.Forms.Button Edit;
         private System.Windows.Forms.Label EditTipLabel;
+        private System.Windows.Forms.Button NextPage;
+        private System.Windows.Forms.Button LastPage;
     }
 }
 

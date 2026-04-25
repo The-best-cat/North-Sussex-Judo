@@ -154,6 +154,7 @@
             this.WeightCatList.Name = "WeightCatList";
             this.WeightCatList.Size = new System.Drawing.Size(151, 24);
             this.WeightCatList.TabIndex = 8;
+            this.WeightCatList.SelectedIndexChanged += new System.EventHandler(this.WeightCatList_SelectedIndexChanged);
             // 
             // CompetitionLabel
             // 
