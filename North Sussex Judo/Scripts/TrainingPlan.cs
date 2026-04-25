@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace NorthSussexJudo
 {
-    public struct TrainingPlan 
+    public class TrainingPlan 
     {
         public string Name { get; private set; }
         public decimal Cost { get; private set; }
@@ -33,9 +33,9 @@ namespace NorthSussexJudo
             return trainingPlans.ToList();
         }
 
-        public static TrainingPlan GetPlan(int index)
+        public static TrainingPlan GetPlan(string name)
         {
-            return trainingPlans[index];
+            return trainingPlans.FirstOrDefault(p => p.Name.Equals(name));
         }
 
         private static TrainingPlan Register(string name, decimal cost, bool allowCompetition = true)

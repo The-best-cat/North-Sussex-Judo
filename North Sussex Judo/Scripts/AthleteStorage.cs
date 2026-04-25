@@ -16,12 +16,7 @@ namespace NorthSussexJudo
 
             if (string.IsNullOrEmpty(athlete.Name)) throw new ArgumentException("Athlete name cannot be empty.");
 
-            Guid id;
-            do { 
-                id = Guid.NewGuid();
-            } while (athletes.ContainsKey(id)); //cuz I like it
-
-            athletes.Add(id, athlete);
+            athletes[athlete.Guid] = athlete;            
         }
 
         public static bool Remove(Guid id)
@@ -36,6 +31,16 @@ namespace NorthSussexJudo
                 return athlete;
             }
             throw new KeyNotFoundException($"Athlete with ID {id} does not exist.");
+        }
+
+        public static List<Athlete> GetAll()
+        {
+            return athletes.Values.ToList();
+        }
+
+        public static bool IsEmpty()
+        {
+            return athletes.Count == 0;
         }
     }
 }

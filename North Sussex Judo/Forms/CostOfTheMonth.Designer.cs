@@ -47,6 +47,8 @@
             // label1
             // 
             this.label1.AutoSize = true;
+            this.label1.BackColor = System.Drawing.Color.Transparent;
+            this.label1.CausesValidation = false;
             this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label1.Location = new System.Drawing.Point(42, 78);
             this.label1.Name = "label1";
@@ -57,6 +59,7 @@
             // label2
             // 
             this.label2.AutoSize = true;
+            this.label2.BackColor = System.Drawing.Color.Transparent;
             this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 13.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label2.Location = new System.Drawing.Point(40, 27);
             this.label2.Name = "label2";
@@ -67,6 +70,8 @@
             // label3
             // 
             this.label3.AutoSize = true;
+            this.label3.BackColor = System.Drawing.Color.Transparent;
+            this.label3.CausesValidation = false;
             this.label3.Location = new System.Drawing.Point(98, 80);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(0, 16);
@@ -75,6 +80,8 @@
             // NameDisplay
             // 
             this.NameDisplay.AutoSize = true;
+            this.NameDisplay.BackColor = System.Drawing.Color.Transparent;
+            this.NameDisplay.CausesValidation = false;
             this.NameDisplay.Location = new System.Drawing.Point(42, 100);
             this.NameDisplay.Name = "NameDisplay";
             this.NameDisplay.Size = new System.Drawing.Size(73, 16);
@@ -84,6 +91,8 @@
             // label4
             // 
             this.label4.AutoSize = true;
+            this.label4.BackColor = System.Drawing.Color.Transparent;
+            this.label4.CausesValidation = false;
             this.label4.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label4.Location = new System.Drawing.Point(42, 230);
             this.label4.Name = "label4";
@@ -94,6 +103,8 @@
             // label5
             // 
             this.label5.AutoSize = true;
+            this.label5.BackColor = System.Drawing.Color.Transparent;
+            this.label5.CausesValidation = false;
             this.label5.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label5.Location = new System.Drawing.Point(42, 127);
             this.label5.Name = "label5";
@@ -104,6 +115,8 @@
             // label6
             // 
             this.label6.AutoSize = true;
+            this.label6.BackColor = System.Drawing.Color.Transparent;
+            this.label6.CausesValidation = false;
             this.label6.Location = new System.Drawing.Point(42, 149);
             this.label6.Name = "label6";
             this.label6.Size = new System.Drawing.Size(55, 16);
@@ -113,7 +126,9 @@
             // WeightDisplay
             // 
             this.WeightDisplay.AutoSize = true;
-            this.WeightDisplay.Location = new System.Drawing.Point(103, 149);
+            this.WeightDisplay.BackColor = System.Drawing.Color.Transparent;
+            this.WeightDisplay.CausesValidation = false;
+            this.WeightDisplay.Location = new System.Drawing.Point(116, 149);
             this.WeightDisplay.Name = "WeightDisplay";
             this.WeightDisplay.Size = new System.Drawing.Size(33, 16);
             this.WeightDisplay.TabIndex = 7;
@@ -122,6 +137,8 @@
             // label8
             // 
             this.label8.AutoSize = true;
+            this.label8.BackColor = System.Drawing.Color.Transparent;
+            this.label8.CausesValidation = false;
             this.label8.Location = new System.Drawing.Point(42, 165);
             this.label8.Name = "label8";
             this.label8.Size = new System.Drawing.Size(68, 16);
@@ -131,16 +148,20 @@
             // CategoryDisplay
             // 
             this.CategoryDisplay.AutoSize = true;
-            this.CategoryDisplay.Location = new System.Drawing.Point(103, 165);
+            this.CategoryDisplay.BackColor = System.Drawing.Color.Transparent;
+            this.CategoryDisplay.CausesValidation = false;
+            this.CategoryDisplay.Location = new System.Drawing.Point(116, 165);
             this.CategoryDisplay.Name = "CategoryDisplay";
-            this.CategoryDisplay.Size = new System.Drawing.Size(15, 16);
+            this.CategoryDisplay.Size = new System.Drawing.Size(69, 16);
             this.CategoryDisplay.TabIndex = 9;
-            this.CategoryDisplay.Text = "--";
+            this.CategoryDisplay.Text = "--sefsefsef";
             // 
             // AnalysisDisplay
             // 
             this.AnalysisDisplay.AutoEllipsis = true;
             this.AnalysisDisplay.AutoSize = true;
+            this.AnalysisDisplay.BackColor = System.Drawing.Color.Transparent;
+            this.AnalysisDisplay.CausesValidation = false;
             this.AnalysisDisplay.Location = new System.Drawing.Point(42, 191);
             this.AnalysisDisplay.MaximumSize = new System.Drawing.Size(364, 0);
             this.AnalysisDisplay.Name = "AnalysisDisplay";
@@ -151,7 +172,7 @@
             // Close
             // 
             this.Close.Anchor = System.Windows.Forms.AnchorStyles.Bottom;
-            this.Close.Location = new System.Drawing.Point(173, 373);
+            this.Close.Location = new System.Drawing.Point(168, 373);
             this.Close.Name = "Close";
             this.Close.Size = new System.Drawing.Size(75, 32);
             this.Close.TabIndex = 11;
@@ -162,6 +183,8 @@
             // PlanDisplay
             // 
             this.PlanDisplay.AutoSize = true;
+            this.PlanDisplay.BackColor = System.Drawing.Color.Transparent;
+            this.PlanDisplay.CausesValidation = false;
             this.PlanDisplay.Location = new System.Drawing.Point(42, 252);
             this.PlanDisplay.Name = "PlanDisplay";
             this.PlanDisplay.Size = new System.Drawing.Size(34, 16);
@@ -171,6 +194,8 @@
             // PlanCostDisplay
             // 
             this.PlanCostDisplay.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.PlanCostDisplay.BackColor = System.Drawing.Color.Transparent;
+            this.PlanCostDisplay.CausesValidation = false;
             this.PlanCostDisplay.Location = new System.Drawing.Point(268, 252);
             this.PlanCostDisplay.Name = "PlanCostDisplay";
             this.PlanCostDisplay.RightToLeft = System.Windows.Forms.RightToLeft.No;

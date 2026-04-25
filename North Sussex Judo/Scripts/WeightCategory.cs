@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Newtonsoft.Json;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -6,11 +7,12 @@ using System.Threading.Tasks;
 
 namespace NorthSussexJudo
 {
-    public struct WeightCategory 
+    public class WeightCategory 
     {
         public string Name { get; private set; }
         public float Limit { get; private set; }
 
+        [JsonConstructor]
         public WeightCategory(string name, float limit)
         {
             Name = name;
@@ -34,9 +36,9 @@ namespace NorthSussexJudo
             return categories.ToList();
         }
 
-        public static WeightCategory GetCategory(int index)
+        public static WeightCategory GetCategory(string name)
         {
-            return categories[index];
+            return categories.FirstOrDefault(c => c.Name.Equals(name));
         }
 
         public static string Analyse(float weight, WeightCategory category)
@@ -54,17 +56,19 @@ namespace NorthSussexJudo
 
             if (category.Equals(HEAVY))
             {
-                if (weight > 100)                
-                    return "Requirement of over 100kg has been met for this athlete.";                
-                else                
-                    return $"This athlete is {100f - weight}kg below the required 100kg lower limit.";                
+                if (weight > 100)
+                    return "Requirement of over 100kg has been met for this athlete.";
+                else if (weight == 100)
+                    return "This athlete is right below the required 100kg lower limit.";
+                else
+                    return $"This athlete is {100f - weight}kg below the required 100kg lower limit.";
             }
             else
             {
                 float difference = category.Limit - weight;
                 if (difference < 0)
                 {
-                    return $"This athlete is {Math.Abs(difference)}kg too heavy for this category.";
+                    return $"This athlete is {Math.Abs(difference).ToString("0.##")}kg too heavy for this category.";
                 }
                 else if (difference > 0)
                 {

@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
+using System.Diagnostics;
 using System.Drawing;
 using System.Linq;
 using System.Text;
@@ -33,11 +34,12 @@ namespace NorthSussexJudo
 
             int leftX = PlanDisplay.Location.X;
             int rightX = PlanCostDisplay.Location.X;
+            int width = PlanCostDisplay.Width;
+            int height = PlanDisplay.Height;
             int currentY = PlanDisplay.Location.Y + Y_GAP;
 
             decimal finalCost = 0m;
-
-            var costSize = PlanCostDisplay.Size;
+            
             var outcome = athlete.Outcome;
 
             finalCost += outcome.Plan.Cost * 4;
@@ -48,18 +50,8 @@ namespace NorthSussexJudo
             {
                 finalCost += outcome.Competitions.Item2;
 
-                Label competition = new Label();
-                competition.Text = "Competition x" + outcome.Competitions.Item1;
-                competition.Location = new Point(leftX, currentY);
-                competition.Size = costSize;                
-                Controls.Add(competition);                
-
-                Label competitionCost = new Label();
-                competitionCost.Text = "£" + outcome.Competitions.Item2.ToString("0.00");
-                competitionCost.Location = new Point(rightX, currentY);
-                competitionCost.Size = costSize;
-                competitionCost.TextAlign = ContentAlignment.TopRight;
-                Controls.Add(competitionCost);
+                ItemLabel("Competition x" + outcome.Competitions.Item1, leftX, currentY, height);
+                CostLabel("£" + outcome.Competitions.Item2.ToString("0.00"), rightX, currentY, width, height);
 
                 currentY += Y_GAP;
             }
@@ -68,37 +60,45 @@ namespace NorthSussexJudo
             {
                 finalCost += outcome.CoachingHours.Item2 * 4;
 
-                Label coaching = new Label();
-                coaching.Text = $"Private Coaching {outcome.CoachingHours.Item1 * 4}hr";
-                coaching.Location = new Point(leftX, currentY);
-                coaching.Size = new Size(200, costSize.Height);                
-                Controls.Add(coaching);
+                ItemLabel($"Private Coaching {outcome.CoachingHours.Item1 * 4}hr", leftX, currentY, height);
+                CostLabel("£" + (outcome.CoachingHours.Item2 * 4).ToString("0.00"), rightX, currentY, width, height);
 
-                Label coachingCost = new Label();
-                coachingCost.Text = "£" + (outcome.CoachingHours.Item2 * 4).ToString("0.00");
-                coachingCost.Location = new Point(rightX, currentY);
-                coachingCost.Size = costSize;
-                coachingCost.TextAlign = ContentAlignment.TopRight;
-                Controls.Add(coachingCost);
+                currentY += Y_GAP;
             }
 
             Label total = new Label();
             total.Text = "Total";
             total.Font = new Font(total.Font, FontStyle.Bold);
-            total.Location = new Point(leftX + EXTRA_X_GAP, currentY + Y_GAP + EXTRA_Y_GAP);
+            total.Location = new Point(leftX + EXTRA_X_GAP, currentY + EXTRA_Y_GAP);
             Controls.Add(total);
 
-            Label final = new Label();
-            final.Text = "£" + finalCost.ToString("0.00");
-            final.Location = new Point(rightX, currentY + Y_GAP + EXTRA_Y_GAP);
-            final.Size = costSize;
-            final.TextAlign = ContentAlignment.TopRight;
-            Controls.Add(final);
+            CostLabel("£" + finalCost.ToString("0.00"), rightX, currentY + EXTRA_Y_GAP, width, height);
         }
 
         private void Close_Click(object sender, EventArgs e)
         {
             Close();
+        }
+
+        private void ItemLabel(string text, int x, int y, int h)
+        {
+            Label label = new Label();
+            label.Text = text;
+            label.Location = new Point(x, y);
+            label.Size = new Size(200, h);
+            label.BackColor = Color.Transparent;
+            Controls.Add(label);
+        }
+
+        private void CostLabel(string text, int x, int y, int w, int h)
+        {
+            Label label = new Label();
+            label.Text = text;
+            label.Location = new Point(x, y);
+            label.Size = new Size(w, h);
+            label.TextAlign = ContentAlignment.TopRight;
+            label.BackColor = Color.Transparent;
+            Controls.Add(label);
         }
     }
 }

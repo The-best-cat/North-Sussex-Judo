@@ -1,29 +1,39 @@
-﻿namespace NorthSussexJudo
+﻿using Newtonsoft.Json;
+using System;
+
+namespace NorthSussexJudo
 {
     public class Athlete
     {
-        public string Name { get; private set; }
-        public TrainingPlan Plan { get; private set; }
+        public Guid Guid { get; private set; }
+        public string Name { get; private set; }        
         public float Weight { get; private set; }
-        public WeightCategory WeightCategory { get; private set; }
-        public int Competitions { get; private set; }
-        public int PrivateCoachingHours { get; private set; } 
+        public WeightCategory WeightCategory { get; private set; }        
         public Outcome Outcome { get; private set; }
 
-        public Athlete(string name, TrainingPlan plan, float weight, WeightCategory category, int competitions, 
+        public Athlete(Guid guid, string name, TrainingPlan plan, float weight, WeightCategory category, int competitions, 
             int privateCoachingHours)
         {
+            Guid = guid;
             Name = name;
-            Plan = plan;
             Weight = weight;
             WeightCategory = category;
-            Competitions = competitions;
-            PrivateCoachingHours = privateCoachingHours;
+            UpdateOutcome(plan, competitions, privateCoachingHours);
         }
 
-        public Outcome UpdateOutcome()
+        [JsonConstructor]
+        public Athlete(Guid guid, string name, float weight, WeightCategory weightCategory, Outcome outcome)
         {
-            Outcome = new Outcome(Plan, Competitions, PrivateCoachingHours);
+            Guid = guid;
+            Name = name;
+            Weight = weight;
+            WeightCategory = WeightCategories.GetCategory(weightCategory.Name);
+            Outcome = outcome;
+        }
+
+        private Outcome UpdateOutcome(TrainingPlan plan, int competitions, int privateCoachingHours)
+        {
+            Outcome = new Outcome(plan, competitions, privateCoachingHours);
             return Outcome;
         }
     }

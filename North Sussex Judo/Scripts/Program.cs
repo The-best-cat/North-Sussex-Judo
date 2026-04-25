@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Runtime.InteropServices;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
@@ -16,7 +17,14 @@ namespace NorthSussexJudo
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
+            Application.ApplicationExit += OnApplicationExit;
             Application.Run(new MainMenu());
+        }
+
+        private static void OnApplicationExit(object sender, EventArgs e)
+        {
+            JsonManager.Save();
+            Application.ApplicationExit -= OnApplicationExit;
         }
     }
 }

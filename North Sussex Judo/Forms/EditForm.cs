@@ -1,26 +1,38 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.ComponentModel;
+using System.Data;
+using System.Drawing;
+using System.Linq;
 using System.Text;
+using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace NorthSussexJudo
 {
-    public partial class RegistrationForm : Form
+    public partial class EditForm : Form
     {
-        public event EventHandler<Athlete> onRegistered;
         public event EventHandler<Athlete> onEdited;
 
-        public RegistrationForm()
+        private Athlete athlete;
+
+        public EditForm(Athlete athlete)
         {
+            this.athlete = athlete;
             InitializeComponent();
         }
 
-        private void RegistrationForm_Load(object sender, EventArgs e)
+        private void EditForm_Load(object sender, EventArgs e)
         {
             TrainingPlanList.Items.AddRange(TrainingPlans.GetPlans().ConvertAll(plan => plan.Name).ToArray());
             WeightCatList.Items.AddRange(WeightCategories.GetCategories().ConvertAll(cat => cat.Name).ToArray());
 
-            CoachingHourList.SelectedIndex = 0;
+            NameBox.Text = athlete.Name;
+            TrainingPlanList.SelectedIndex = TrainingPlanList.Items.IndexOf(athlete.Outcome.Plan.Name);
+            WeightBox.Text = athlete.Weight.ToString();
+            WeightCatList.SelectedIndex = WeightCatList.Items.IndexOf(athlete.WeightCategory.Name);
+            CompetitionBox.Text = athlete.Outcome.Competitions.Item1.ToString();
+            CoachingHourList.SelectedIndex = athlete.Outcome.CoachingHours.Item1;            
         }
 
         private void Confirm_Click(object sender, EventArgs e)
@@ -28,7 +40,7 @@ namespace NorthSussexJudo
             if (!CheckAllowRegister()) return;
 
             Athlete athlete = new Athlete(
-                Guid.NewGuid(),
+                this.athlete.Guid,
                 NameBox.Text,
                 TrainingPlans.GetPlan(TrainingPlanList.Text),
                 float.TryParse(WeightBox.Text, out float weight) ? weight : throw new ArgumentException("Weight needs to be a floating point number."),
@@ -38,7 +50,7 @@ namespace NorthSussexJudo
             );
 
             AthleteStorage.Register(athlete);
-            onRegistered?.Invoke(this, athlete);
+            onEdited?.Invoke(this, athlete);
 
             Hide();
             new CostOfTheMonth(athlete).ShowDialog();
