@@ -1,8 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace NorthSussexJudo
 {
@@ -33,14 +31,7 @@ namespace NorthSussexJudo
             throw new KeyNotFoundException($"Athlete with ID {id} does not exist.");
         }
 
-        public static List<Athlete> GetAll()
-        {
-            return athletes.Values.ToList();
-        }
-
-        public static bool IsEmpty()
-        {
-            return athletes.Count == 0;
-        }
+        public static List<Athlete> GetAll() => athletes.Values.ToList();
+        public static bool IsEmpty() => athletes.Count == 0;
     }
 }

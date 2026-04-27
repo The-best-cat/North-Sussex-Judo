@@ -18,7 +18,6 @@ namespace NorthSussexJudo
         {
             TrainingPlanList.Items.AddRange(TrainingPlans.GetPlans().ConvertAll(plan => plan.Name).ToArray());
             WeightCatList.Items.AddRange(WeightCategories.GetCategories().ConvertAll(cat => cat.Name).ToArray());
-
             CoachingHourList.SelectedIndex = 0;
         }
 

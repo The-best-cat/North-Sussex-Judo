@@ -1,7 +1,6 @@
 ﻿using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
-using System.Diagnostics;
 using System.IO;
 
 namespace NorthSussexJudo
@@ -64,9 +63,6 @@ namespace NorthSussexJudo
             return directory;
         }
 
-        private static string GetPath()
-        {
-            return Path.Combine(GetDirectory(), FILE_NAME);
-        }
+        private static string GetPath() => Path.Combine(GetDirectory(), FILE_NAME);
     }
 }

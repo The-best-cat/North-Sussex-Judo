@@ -10,6 +10,7 @@ namespace NorthSussexJudo
         private int page = 0;
         private Mode mode = Mode.NONE;
         private List<Guid> athletes = new List<Guid>();
+        private Dictionary<Guid, Button> buttons = new Dictionary<Guid, Button>();
 
         public MainMenu()
         {
@@ -22,9 +23,8 @@ namespace NorthSussexJudo
             foreach (var i in AthleteStorage.GetAll())
             {
                 AddAthlete(i);
-            }
+            }            
             EnableButtons();
-            OnModeChanged();
         }
 
         private void Register_Click(object sender, EventArgs e)
@@ -56,10 +56,8 @@ namespace NorthSussexJudo
                         MessageBoxIcon.Warning
                     );
 
-                    if (result == DialogResult.Yes)
-                    {
-                        RemoveAthlete(id);
-                    }
+                    if (result == DialogResult.Yes)                    
+                        RemoveAthlete(id);                    
                 } 
                 else if (IsEditing())
                 {
@@ -73,10 +71,7 @@ namespace NorthSussexJudo
                     new CostOfTheMonth(athlete).ShowDialog();
                 }
             } 
-            else
-            {
-                throw new Exception("Either the sender is not a button, or the tag is not a Guid. This should never happen.");
-            }
+            else throw new Exception("Either the sender is not a button, or the tag is not a Guid. This should never happen.");
         }
 
         private void NextPage_Click(object sender, EventArgs e)
@@ -91,20 +86,9 @@ namespace NorthSussexJudo
             ChangePage();            
         }
 
-        private bool AtFirstPage()
-        {
-            return page == 0;
-        }
-
-        private bool AtLastPage()
-        {
-            return page == athletes.Count / 25;
-        }   
-
-        private bool HasMultiplePages()
-        {
-            return athletes.Count > 25;
-        }
+        private bool AtFirstPage() => page == 0;
+        private bool AtLastPage() => page == athletes.Count / 25;
+        private bool HasMultiplePages() => athletes.Count > 25;       
 
         private void ChangePage()
         {
@@ -113,7 +97,7 @@ namespace NorthSussexJudo
             {
                 FlowPanel.Controls.Add(CreateButton(AthleteStorage.Get(athletes[i])));
             }
-            OnModeChanged();
+            EnableButtons();
         }
 
         private Button CreateButton(Athlete athlete)
@@ -125,6 +109,7 @@ namespace NorthSussexJudo
                 Tag = athlete.Guid
             };
             btn.Click += AthleteButton_Click;
+            buttons[athlete.Guid] = btn;
             return btn;
         }
 
@@ -156,13 +141,14 @@ namespace NorthSussexJudo
                 }
             }
             athletes.Remove(guid);
+            buttons.Remove(guid);
 
             if (!AtLastPage())
             {
                 FlowPanel.Controls.Add(CreateButton(AthleteStorage.Get(athletes[page * 25 + 24])));
             }
 
-            EnableButtons();
+            AutoEndMode();
 
             if (FlowPanel.Controls.Count == 0 && !AtFirstPage())
             {
@@ -173,22 +159,21 @@ namespace NorthSussexJudo
 
         private void EditAthlete(Athlete athlete)
         {
-            foreach (Control ctrl in FlowPanel.Controls) 
+            if (buttons.TryGetValue(athlete.Guid, out Button btn))
             {
-                if (ctrl is Button btn && btn.Tag is Guid id && id == athlete.Guid)
-                {
-                    btn.Text = athlete.Name;
-                    break;
-                }
+                btn.Text = athlete.Name;
             }
         }
 
-        private void EnableButtons()
-        {
-            Remove.Enabled = mode == Mode.NONE || !AthleteStorage.IsEmpty() && IsDeleting();
-            Edit.Enabled = mode == Mode.NONE || !AthleteStorage.IsEmpty() && IsEditing();
+        private bool IsDeleting() => mode == Mode.REMOVE;
+        private bool IsEditing() => mode == Mode.EDIT;
 
-            if ((IsDeleting() && !Remove.Enabled) || (IsEditing() && !Edit.Enabled))
+        private bool AllowEditMode() => !AthleteStorage.IsEmpty() && (mode == Mode.NONE || IsEditing());
+        private bool AllowRemoveMode() => !AthleteStorage.IsEmpty() && (mode == Mode.NONE || IsDeleting());
+
+        private void AutoEndMode()
+        {            
+            if ((IsDeleting() && !AllowRemoveMode()) || (IsEditing() && !AllowEditMode()))
             {
                 EnterMode(Mode.NONE);
             }
@@ -199,26 +184,16 @@ namespace NorthSussexJudo
             mode = newMode;
             RemoveTipLabel.Visible = IsDeleting();
             EditTipLabel.Visible = IsEditing();
-            OnModeChanged();
+            EnableButtons();
         }
 
-        private void OnModeChanged()
+        private void EnableButtons()
         {
             NextPage.Enabled = mode == Mode.NONE && HasMultiplePages() && !AtLastPage();
             LastPage.Enabled = mode == Mode.NONE && HasMultiplePages() && !AtFirstPage();
             Register.Enabled = mode == Mode.NONE;
-            Edit.Enabled = (mode == Mode.NONE || IsEditing()) && !AthleteStorage.IsEmpty();
-            Remove.Enabled = (mode == Mode.NONE || IsDeleting()) && !AthleteStorage.IsEmpty();
-        }
-
-        private bool IsDeleting()
-        {
-            return mode == Mode.REMOVE;
-        }
-
-        private bool IsEditing()
-        {
-            return mode == Mode.EDIT;
+            Edit.Enabled = AllowEditMode();
+            Remove.Enabled = AllowRemoveMode();
         }
 
         private enum Mode

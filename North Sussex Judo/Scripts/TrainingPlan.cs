@@ -1,8 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace NorthSussexJudo
 {
@@ -28,15 +25,8 @@ namespace NorthSussexJudo
         public static readonly TrainingPlan INTERMEDIATE = Register("Intermediate", Costs.INTERMEDIATE);
         public static readonly TrainingPlan ELITE = Register("Elite", Costs.ELITE);
 
-        public static List<TrainingPlan> GetPlans()
-        {
-            return trainingPlans.ToList();
-        }
-
-        public static TrainingPlan GetPlan(string name)
-        {
-            return trainingPlans.FirstOrDefault(p => p.Name.Equals(name));
-        }
+        public static List<TrainingPlan> GetPlans() => trainingPlans.ToList();
+        public static TrainingPlan GetPlan(string name) => trainingPlans.FirstOrDefault(p => p.Name.Equals(name));
 
         private static TrainingPlan Register(string name, decimal cost, bool allowCompetition = true)
         {

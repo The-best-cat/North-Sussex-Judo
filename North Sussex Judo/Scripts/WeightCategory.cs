@@ -2,8 +2,6 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace NorthSussexJudo
 {
@@ -31,28 +29,14 @@ namespace NorthSussexJudo
         public static readonly WeightCategory LIGHT = Register("Light", 73); 
         public static readonly WeightCategory FLY = Register("Fly", 66);
 
-        public static List<WeightCategory> GetCategories()
-        {
-            return categories.ToList();
-        }
-
-        public static WeightCategory GetCategory(string name)
-        {
-            return categories.FirstOrDefault(c => c.Name.Equals(name));
-        }
+        public static List<WeightCategory> GetCategories() => categories.ToList();
+        public static WeightCategory GetCategory(string name) => categories.FirstOrDefault(c => c.Name.Equals(name));
 
         public static string Analyse(float weight, WeightCategory category)
         {
-            WeightCategory supposedCat = FLY;
-            for (int i = categories.Count - 1; i >= 0; i--) //Finds the category the athlete should be in based on their weight                                                            
-            {
-                var j = categories[i];
-                if (weight <= j.Limit)
-                {
-                    supposedCat = j;
-                    break;
-                }
-            }
+            //Finds the category the athlete should be in based on their weight
+            //Default to FLY
+            WeightCategory supposedCat = categories.LastOrDefault(c => c.Limit <= weight) ?? FLY;            
 
             if (category.Equals(HEAVY))
             {
@@ -74,8 +58,7 @@ namespace NorthSussexJudo
                 {
                     if (!supposedCat.Equals(category))                    
                         return $"This athlete is too light. They should be in the {supposedCat.Name} category.";
-                    else
-                    
+                    else                    
                         return $"This athlete meets the weight requirement for this category and is {difference}kg below the upper limit.";                    
                 }
                 return "This athlete is right at the upper limit.";
