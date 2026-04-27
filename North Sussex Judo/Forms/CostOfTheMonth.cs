@@ -35,7 +35,7 @@ namespace NorthSussexJudo
             
             var outcome = athlete.Outcome;
 
-            finalCost += outcome.Plan.Cost * 4;
+            finalCost += outcome.Plan.Cost * Constants.WEEKS_IN_MONTH;
             PlanDisplay.Text = outcome.Plan.Name + " Training Plan";
             PlanCostDisplay.Text = "£" + finalCost.ToString("0.00");
 
@@ -51,10 +51,10 @@ namespace NorthSussexJudo
 
             if (outcome.CoachingHours.Item1 > 0)
             {
-                finalCost += outcome.CoachingHours.Item2 * 4;
+                finalCost += outcome.CoachingHours.Item2 * Constants.WEEKS_IN_MONTH;
 
-                ItemLabel($"Private Coaching {outcome.CoachingHours.Item1 * 4}hr", leftX, currentY, height);
-                CostLabel("£" + (outcome.CoachingHours.Item2 * 4).ToString("0.00"), rightX, currentY, width, height);
+                ItemLabel($"Private Coaching {outcome.CoachingHours.Item1 * Constants.WEEKS_IN_MONTH}hr", leftX, currentY, height);
+                CostLabel("£" + (outcome.CoachingHours.Item2 * Constants.WEEKS_IN_MONTH).ToString("0.00"), rightX, currentY, width, height);
 
                 currentY += Y_GAP;
             }

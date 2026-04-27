@@ -45,7 +45,7 @@ namespace NorthSussexJudo
                 else if (weight == 100)
                     return "This athlete is right below the required 100kg lower limit.";
                 else
-                    return $"This athlete is {100f - weight}kg below the required 100kg lower limit.";
+                    return $"This athlete is {(100f - weight).ToString("0.##")}kg below the required 100kg lower limit.";
             }
             else
             {

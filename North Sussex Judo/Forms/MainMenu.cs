@@ -130,18 +130,15 @@ namespace NorthSussexJudo
 
         private void RemoveAthlete(Guid guid)
         {
-            foreach (Control ctrl in FlowPanel.Controls) 
+            if (buttons.TryGetValue(guid, out Button btn))
             {
-                if (ctrl is Button btn && btn.Tag is Guid id && id == guid)
-                {
-                    AthleteStorage.Remove(guid);
-                    FlowPanel.Controls.Remove(btn);
-                    btn.Dispose();
-                    break;
-                }
+                AthleteStorage.Remove(guid);
+                FlowPanel.Controls.Remove(btn);
+                btn.Dispose();
+                buttons.Remove(guid);
+                athletes.Remove(guid);
             }
-            athletes.Remove(guid);
-            buttons.Remove(guid);
+            else throw new Exception("There is no button for athlete with id " + guid + ". This should never happen.");            
 
             if (!AtLastPage())
             {

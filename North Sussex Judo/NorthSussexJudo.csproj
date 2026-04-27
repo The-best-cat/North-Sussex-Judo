@@ -100,7 +100,7 @@
     </Compile>
     <Compile Include="Scripts\Athlete.cs" />
     <Compile Include="Scripts\AthleteStorage.cs" />
-    <Compile Include="Scripts\Costs.cs" />
+    <Compile Include="Scripts\Constants.cs" />
     <Compile Include="Scripts\JsonManager.cs" />
     <Compile Include="Scripts\Outcome.cs" />
     <Compile Include="Scripts\TrainingPlan.cs" />

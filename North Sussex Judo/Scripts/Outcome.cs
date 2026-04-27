@@ -16,8 +16,8 @@ namespace NorthSussexJudo
         public Outcome(TrainingPlan plan, int competitions, int coachingHours)
         {
             Plan = plan;
-            Competitions = (competitions, competitions * Costs.PER_COMPETITION);
-            CoachingHours = (coachingHours, coachingHours * Costs.COACHING_PER_HOUR);
+            Competitions = (competitions, competitions * Constants.PER_COMPETITION);
+            CoachingHours = (coachingHours, coachingHours * Constants.COACHING_PER_HOUR);
             Date = DateTime.Now;
         }
 

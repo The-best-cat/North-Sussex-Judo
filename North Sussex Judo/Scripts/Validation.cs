@@ -121,7 +121,7 @@ namespace NorthSussexJudo
             if (string.IsNullOrEmpty(name.Text))
             {
                 valid = false;
-                nameError.SetError(name, "Pleaase enter the athlete's name.");
+                nameError.SetError(name, "Please enter the athlete's name.");
             } 
             else nameError.SetError(name, string.Empty);
 

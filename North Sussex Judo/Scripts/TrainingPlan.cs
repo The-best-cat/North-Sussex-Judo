@@ -21,9 +21,9 @@ namespace NorthSussexJudo
     {
         private static readonly List<TrainingPlan> trainingPlans = new List<TrainingPlan>();
 
-        public static readonly TrainingPlan BEGINNER = Register("Beginner", Costs.BEGINNER, false);
-        public static readonly TrainingPlan INTERMEDIATE = Register("Intermediate", Costs.INTERMEDIATE);
-        public static readonly TrainingPlan ELITE = Register("Elite", Costs.ELITE);
+        public static readonly TrainingPlan BEGINNER = Register("Beginner", Constants.BEGINNER, false);
+        public static readonly TrainingPlan INTERMEDIATE = Register("Intermediate", Constants.INTERMEDIATE);
+        public static readonly TrainingPlan ELITE = Register("Elite", Constants.ELITE);
 
         public static List<TrainingPlan> GetPlans() => trainingPlans.ToList();
         public static TrainingPlan GetPlan(string name) => trainingPlans.FirstOrDefault(p => p.Name.Equals(name));
