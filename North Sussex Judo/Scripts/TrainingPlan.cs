@@ -5,9 +5,9 @@ namespace NorthSussexJudo
 {
     public class TrainingPlan 
     {
-        public string Name { get; private set; }
-        public decimal Cost { get; private set; }
-        public bool AllowCompetition { get; private set; }
+        public string Name { get; }
+        public decimal Cost { get; }
+        public bool AllowCompetition { get; }
 
         public TrainingPlan(string name, decimal cost, bool allowCompetition)
         {

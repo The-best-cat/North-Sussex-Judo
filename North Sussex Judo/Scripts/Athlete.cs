@@ -5,10 +5,10 @@ namespace NorthSussexJudo
 {
     public class Athlete
     {
-        public Guid Guid { get; private set; }
-        public string Name { get; private set; }        
-        public float Weight { get; private set; }
-        public WeightCategory WeightCategory { get; private set; }        
+        public Guid Guid { get; }
+        public string Name { get; }        
+        public float Weight { get; }
+        public WeightCategory WeightCategory { get; }        
         public Outcome Outcome { get; private set; }
 
         public Athlete(Guid guid, string name, TrainingPlan plan, float weight, WeightCategory category, int competitions, 

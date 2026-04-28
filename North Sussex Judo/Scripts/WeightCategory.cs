@@ -7,8 +7,8 @@ namespace NorthSussexJudo
 {
     public class WeightCategory 
     {
-        public string Name { get; private set; }
-        public float Limit { get; private set; }
+        public string Name { get; }
+        public float Limit { get; }
 
         [JsonConstructor]
         public WeightCategory(string name, float limit)
