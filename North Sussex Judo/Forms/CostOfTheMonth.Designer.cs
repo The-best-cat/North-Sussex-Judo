@@ -42,6 +42,7 @@
             this.Close = new System.Windows.Forms.Button();
             this.PlanDisplay = new System.Windows.Forms.Label();
             this.PlanCostDisplay = new System.Windows.Forms.Label();
+            this.DateTimeDisplay = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
             // label1
@@ -204,11 +205,22 @@
             this.PlanCostDisplay.Text = "£00.00";
             this.PlanCostDisplay.TextAlign = System.Drawing.ContentAlignment.TopRight;
             // 
+            // DateTimeDisplay
+            // 
+            this.DateTimeDisplay.AutoSize = true;
+            this.DateTimeDisplay.CausesValidation = false;
+            this.DateTimeDisplay.Location = new System.Drawing.Point(45, 342);
+            this.DateTimeDisplay.Name = "DateTimeDisplay";
+            this.DateTimeDisplay.Size = new System.Drawing.Size(164, 16);
+            this.DateTimeDisplay.TabIndex = 14;
+            this.DateTimeDisplay.Text = "DD/MM/YYYY HH/MM/SS";
+            // 
             // CostOfTheMonth
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(120F, 120F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Dpi;
             this.ClientSize = new System.Drawing.Size(412, 433);
+            this.Controls.Add(this.DateTimeDisplay);
             this.Controls.Add(this.PlanCostDisplay);
             this.Controls.Add(this.PlanDisplay);
             this.Controls.Add(this.Close);
@@ -249,5 +261,6 @@
         private System.Windows.Forms.Button Close;
         private System.Windows.Forms.Label PlanDisplay;
         private System.Windows.Forms.Label PlanCostDisplay;
+        private System.Windows.Forms.Label DateTimeDisplay;
     }
 }

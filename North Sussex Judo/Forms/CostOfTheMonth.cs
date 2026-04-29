@@ -66,6 +66,8 @@ namespace NorthSussexJudo
             Controls.Add(total);
 
             CostLabel("£" + finalCost.ToString("0.00"), rightX, currentY + EXTRA_Y_GAP, width, height);
+
+            DateTimeDisplay.Text = outcome.Date.ToString("G");
         }
 
         private void Close_Click(object sender, EventArgs e)
