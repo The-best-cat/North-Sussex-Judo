@@ -7,12 +7,14 @@ namespace NorthSussexJudo
 {
     public static class Validation
     {
+        //Validate name input to ensure it only contains letters and spaces, and is not empty or whitespace only
         public static bool IsNameValid(TextBox box)
         {
             return !box.Text.Any(c => !char.IsLetter(c) && !char.IsWhiteSpace(c)) 
                 && !box.Text.All(char.IsWhiteSpace);
         }
 
+        //Filter out any non-numeric characters from the input, allowing only digits, decimal points, and commas
         public static void FilterInvalidInput(TextBox textBox)
         {
             StringBuilder sb = new StringBuilder();
@@ -26,6 +28,7 @@ namespace NorthSussexJudo
             textBox.Text = sb.ToString();
         }
 
+        //Validate name input and provide user feedback through an ErrorProvider if the input is invalid
         public static void ValidateName(CancelEventArgs e, TextBox box, ErrorProvider error)
         {
             if (!IsNameValid(box))
@@ -41,6 +44,8 @@ namespace NorthSussexJudo
             }
         }
 
+        //Validate that a selection has been made in a dropdown list
+        //and provide user feedback through an ErrorProvider if no selection is made
         public static bool ValidateDropdown(ComboBox box, ErrorProvider error, string message = "")
         {
             if (box.SelectedIndex == -1)
@@ -52,6 +57,7 @@ namespace NorthSussexJudo
             return true;
         }
 
+        //Trim leading and trailing whitespace from the input, and reduce multiple consecutive spaces to a single space
         private static void TrimName(TextBox textBox)
         {
             StringBuilder sb = new StringBuilder();
@@ -82,6 +88,8 @@ namespace NorthSussexJudo
             return IsNumeric(textBox) && int.TryParse(textBox.Text, out int result) && result >= 0;
         }
 
+        //Check if the input contains only digits, decimal points, and commas
+        //If the input is empty, set it to "0" first
         private static bool IsNumeric(TextBox textBox)
         {
             if (string.IsNullOrEmpty(textBox.Text))
@@ -91,6 +99,7 @@ namespace NorthSussexJudo
             return !textBox.Text.Any(c => !char.IsDigit(c) && c != '.' && c != ',');
         }
 
+        //Validate float input and provide user feedback through an ErrorProvider if the input is invalid
         public static void HandleInvalidFloat(CancelEventArgs e, TextBox textBox, ErrorProvider provider, string message)
         {
             if (!ValidateFloatInput(textBox))
@@ -101,6 +110,8 @@ namespace NorthSussexJudo
             }
             else provider.SetError(textBox, string.Empty);
         }
+
+        //Validate int input and provide user feedback through an ErrorProvider if the input is invalid
         public static void HandleInvalidInt(CancelEventArgs e, TextBox textBox, ErrorProvider provider, string message)
         {
             if (!ValidateIntInput(textBox))
@@ -112,6 +123,8 @@ namespace NorthSussexJudo
             else provider.SetError(textBox, string.Empty);
         }
 
+        //Check if all required fields are valid for registering an athlete,
+        //and provide user feedback through ErrorProviders for any invalid fields
         public static bool CheckAllowRegister(TextBox name, TextBox weight, TextBox competition, ComboBox trainingPlanList,
             ComboBox weightCatList, ErrorProvider nameError, ErrorProvider planError, ErrorProvider catError
         )

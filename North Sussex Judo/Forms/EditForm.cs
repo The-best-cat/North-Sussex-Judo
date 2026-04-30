@@ -22,6 +22,8 @@ namespace NorthSussexJudo
             InitializeComponent();
         }
 
+        //Load training plans and weight categories into the dropdown lists when the form is loaded
+        //Load existing athlete data into the form fields when the form is loaded
         private void EditForm_Load(object sender, EventArgs e)
         {
             TrainingPlanList.Items.AddRange(TrainingPlans.GetPlans().ConvertAll(plan => plan.Name).ToArray());
@@ -35,6 +37,9 @@ namespace NorthSussexJudo
             CoachingHourList.SelectedIndex = athlete.Outcome.CoachingHours.Item1;            
         }
 
+        //When the confirm button is clicked, validate the input and if valid,
+        //create a new Athlete object with the same GUID and the updated data and register it.
+        //Then show the cost of the month form for the edited athlete.
         private void Confirm_Click(object sender, EventArgs e)
         {
             if (!CheckAllowRegister()) return;

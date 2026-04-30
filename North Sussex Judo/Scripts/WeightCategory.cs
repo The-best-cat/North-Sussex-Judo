@@ -50,13 +50,13 @@ namespace NorthSussexJudo
             else
             {
                 float difference = category.Limit - weight;
-                if (difference < 0)
+                if (difference < 0) //Athlete is over the limit
                 {
                     return $"This athlete is {Math.Abs(difference).ToString("0.##")}kg too heavy for this category.";
                 }
-                else if (difference > 0)
+                else if (difference > 0) //Athlete is under the limit
                 {
-                    if (!supposedCat.Equals(category))                    
+                    if (!supposedCat.Equals(category)) //Athlete is in the wrong category
                         return $"This athlete is too light. They should be in the {supposedCat.Name} category.";
                     else                    
                         return $"This athlete meets the weight requirement for this category and is {difference}kg below the upper limit.";                    

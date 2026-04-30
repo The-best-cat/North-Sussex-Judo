@@ -4,7 +4,7 @@ using System;
 namespace NorthSussexJudo
 {
     //Stores the outcome so old records remain accurate to what was actually charged at the time
-    // regardless of any future changes to the costs.
+    //regardless of any future changes to the costs.
     //Doesn't store the weights as they should be updated in real time.
     public struct Outcome 
     {

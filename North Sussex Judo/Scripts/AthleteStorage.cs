@@ -14,7 +14,7 @@ namespace NorthSussexJudo
 
             if (string.IsNullOrEmpty(athlete.Name)) throw new ArgumentException("Athlete name cannot be empty.");
 
-            athletes[athlete.Guid] = athlete;            
+            athletes[athlete.Guid] = athlete; //This will add or override the athlete based on the Guid key   
         }
 
         public static bool Remove(Guid id)
