@@ -26,22 +26,23 @@ namespace NorthSussexJudo
             }            
             EnableButtons();
 
-            for (int i = 0; i < 30; i++)
-            {
-                Athlete tester = new Athlete(
-                    Guid.NewGuid(),
-                    "Test Athlete " + (i + 1),
-                    TrainingPlans.GetPlan("Beginner"),
-                    66f,
-                    WeightCategories.GetCategory("Fly"),
-                    0,
-                    0
-                );
+            //Test Code - Add 30 athletes to test pagination
+            //for (int i = 0; i < 30; i++)
+            //{
+            //    Athlete tester = new Athlete(
+            //        Guid.NewGuid(),
+            //        "Test Athlete " + (i + 1),
+            //        TrainingPlans.GetPlan("Beginner"),
+            //        66f,
+            //        WeightCategories.GetCategory("Fly"),
+            //        0,
+            //        0
+            //    );
 
-                AthleteStorage.Register(tester);
+            //    AthleteStorage.Register(tester);
 
-                AddAthlete(tester);
-            }
+            //    AddAthlete(tester);
+            //}
         }
 
         private void Register_Click(object sender, EventArgs e)
