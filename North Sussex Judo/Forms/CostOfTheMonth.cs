@@ -25,6 +25,7 @@ namespace NorthSussexJudo
             CategoryDisplay.Text = athlete.WeightCategory.Name;
             AnalysisDisplay.Text = WeightCategories.Analyse(athlete.Weight, athlete.WeightCategory);
 
+            //Use the location of Training Plan and Cost displays to position the itemised costs below them
             int leftX = PlanDisplay.Location.X;
             int rightX = PlanCostDisplay.Location.X;
             int width = PlanCostDisplay.Width;

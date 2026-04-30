@@ -34,7 +34,7 @@ namespace NorthSussexJudo
             if (!IsNameValid(box))
             {
                 e.Cancel = true;
-                box.Focus();
+                box.Focus(); //Force the user to correct the input before moving on
                 error.SetError(box, "Please enter a valid name (letters and spaces only).");
             }
             else
