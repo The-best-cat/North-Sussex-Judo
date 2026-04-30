@@ -25,6 +25,23 @@ namespace NorthSussexJudo
                 AddAthlete(i);
             }            
             EnableButtons();
+
+            for (int i = 0; i < 30; i++)
+            {
+                Athlete tester = new Athlete(
+                    Guid.NewGuid(),
+                    "Test Athlete " + (i + 1),
+                    TrainingPlans.GetPlan("Beginner"),
+                    66f,
+                    WeightCategories.GetCategory("Fly"),
+                    0,
+                    0
+                );
+
+                AthleteStorage.Register(tester);
+
+                AddAthlete(tester);
+            }
         }
 
         private void Register_Click(object sender, EventArgs e)
@@ -92,7 +109,8 @@ namespace NorthSussexJudo
 
         private void ChangePage()
         {
-            FlowPanel.Controls.Clear();
+            buttons.Clear();
+            FlowPanel.Controls.Clear();            
             for (int i = page * 25; i < Math.Min(page * 25 + 25, athletes.Count); i++)
             {
                 FlowPanel.Controls.Add(CreateButton(AthleteStorage.Get(athletes[i])));
@@ -145,7 +163,11 @@ namespace NorthSussexJudo
                 FlowPanel.Controls.Add(CreateButton(AthleteStorage.Get(athletes[page * 25 + 24])));
             }
 
-            AutoEndMode();
+            if ((IsDeleting() && !AllowRemoveMode()) || (IsEditing() && !AllowEditMode()))
+            {
+                EnterMode(Mode.NONE);
+            } 
+            else EnableButtons();
 
             if (FlowPanel.Controls.Count == 0 && !AtFirstPage())
             {
@@ -168,14 +190,6 @@ namespace NorthSussexJudo
         private bool AllowEditMode() => !AthleteStorage.IsEmpty() && (mode == Mode.NONE || IsEditing());
         private bool AllowRemoveMode() => !AthleteStorage.IsEmpty() && (mode == Mode.NONE || IsDeleting());
 
-        private void AutoEndMode()
-        {            
-            if ((IsDeleting() && !AllowRemoveMode()) || (IsEditing() && !AllowEditMode()))
-            {
-                EnterMode(Mode.NONE);
-            }
-        }
-
         private void EnterMode(Mode newMode)
         {
             mode = newMode;
@@ -186,8 +200,8 @@ namespace NorthSussexJudo
 
         private void EnableButtons()
         {
-            NextPage.Enabled = mode == Mode.NONE && HasMultiplePages() && !AtLastPage();
-            LastPage.Enabled = mode == Mode.NONE && HasMultiplePages() && !AtFirstPage();
+            NextPage.Enabled = HasMultiplePages() && !AtLastPage();
+            LastPage.Enabled = HasMultiplePages() && !AtFirstPage();
             Register.Enabled = mode == Mode.NONE;
             Edit.Enabled = AllowEditMode();
             Remove.Enabled = AllowRemoveMode();
